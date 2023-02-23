@@ -15,8 +15,6 @@ public class Peso extends AppCompatActivity implements AdapterView.OnItemSelecte
     String[] items = new String[]{"Tonelada", "Kilogramo", "Gramo", "Onza", "Libra"};
     private Spinner pesosEntrada;
     private Spinner pesosSalida;
-    private int selected_1;
-    private int selected_2;
     private EditText et_entrada, et_salida;
 
 
@@ -26,7 +24,7 @@ public class Peso extends AppCompatActivity implements AdapterView.OnItemSelecte
         setContentView(R.layout.activity_peso);
         setTitle("Peso");
 
-        pesosEntrada = (Spinner)findViewById(R.id.spinner_pesoEntrada);
+        pesosEntrada = (Spinner)findViewById(R.id.spinner_volumenEntrada);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(Peso.this,
                 android.R.layout.simple_spinner_item,items);
 
@@ -34,7 +32,7 @@ public class Peso extends AppCompatActivity implements AdapterView.OnItemSelecte
         pesosEntrada.setAdapter(adapter);
         pesosEntrada.setOnItemSelectedListener(this);
 
-        pesosSalida = (Spinner)findViewById(R.id.spinner_pesosSalida);
+        pesosSalida = (Spinner)findViewById(R.id.spinner_volumenSalida);
         ArrayAdapter<String>adapter2 = new ArrayAdapter<String>(Peso.this,
                 android.R.layout.simple_spinner_item,items);
 
@@ -52,6 +50,8 @@ public class Peso extends AppCompatActivity implements AdapterView.OnItemSelecte
 
         double Kg = 0;
         double res = 0;
+
+        if(!validarCampos()) return;
 
         //Detectamos la Unidad de Longitud a convertir para convertilo a centimetros y con esa base convertirlos a la Unidad de Longitud de salida seleccionada
         switch (pesosEntrada.getSelectedItem().toString()){

@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btn_longitud, btn_peso;
+    private Button btn_longitud, btn_peso, btn_volumen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn_volumen = (Button) findViewById(R.id.btn_volumen);
+        btn_volumen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivityVolumen();
+            }
+        });
+
     }
 
     public void openActivityLongitud(){
@@ -44,5 +52,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Peso.class);
         startActivity(intent);
     }
+
+    public void openActivityVolumen(){
+        Intent intent = new Intent(this, Volumen.class);
+        startActivity(intent);
+    }
+
 }
 
