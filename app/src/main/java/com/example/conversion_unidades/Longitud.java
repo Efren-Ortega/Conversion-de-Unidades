@@ -3,11 +3,17 @@ package com.example.conversion_unidades;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Longitud extends AppCompatActivity implements  AdapterView.OnItemSelectedListener{
@@ -17,7 +23,8 @@ public class Longitud extends AppCompatActivity implements  AdapterView.OnItemSe
     private Spinner longitudesSalida;
     private int selected_1;
     private int selected_2;
-    private EditText et_entrada, et_salida;
+    private EditText et_entrada;
+    private TextView et_salida;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,32 +32,93 @@ public class Longitud extends AppCompatActivity implements  AdapterView.OnItemSe
         setContentView(R.layout.activity_longitud);
         setTitle("Longitud");
 
+        //SPINNER 1
         longitudesEntrada = (Spinner)findViewById(R.id.spinner_TempEntrada);
+
+        //Cargamos los datos del Array items en el Spinner
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(Longitud.this,
                 android.R.layout.simple_spinner_item,items);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //Cargamos el ArrayAdapter en el spinner
         longitudesEntrada.setAdapter(adapter);
+
+        //Se le asigna un Escuchador
         longitudesEntrada.setOnItemSelectedListener(this);
 
+
+        //SPINNER 2
         longitudesSalida = (Spinner)findViewById(R.id.spinner_tempSalida);
+
+        //Cargamos los datos del Array items en el Spinner
         ArrayAdapter<String>adapter2 = new ArrayAdapter<String>(Longitud.this,
-                android.R.layout.simple_spinner_item,items);
+                android.R.layout.simple_spinner_item, items);
 
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Cargamos el ArrayAdapter en el spinner
         longitudesSalida.setAdapter(adapter2);
+
+        //Se le asigna un Escuchador
         longitudesSalida.setOnItemSelectedListener(this);
 
         et_entrada = (EditText) findViewById(R.id.et_entrada);
-        et_salida = (EditText) findViewById(R.id.et_salida);
+        et_salida = (TextView) findViewById(R.id.et_salida);
         et_entrada.setText("1");
+        et_salida.setFocusable(false);
+
+
+        et_entrada.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //Al cambiar el EditText ejecutamos un nuevo calculo
+                Calcular();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+    }
+
+    //Función que se ejecuta cuando se selecciona un Item del Spinner
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
+        this.Calcular();
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
+    public void onNothingSelected(AdapterView<?> parent) {
+        // TODO Auto-generated method stub
+    }
+
+    //Valimos que el campo no este vacio y que no inicie con un punto
+    public boolean validarCampos(){
+        if(et_entrada.getText().toString().matches("")){
+            Toast.makeText(this, "Ingrese un Valor a Convertir", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(et_entrada.getText().toString().matches("\\.")){
+            Toast.makeText(this, "Ingrese un Valor Valido", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    //Realizamos los calculos según el tipo de unidad a convertir
+    public void Calcular(){
 
         double cm = 0;
         double res = 0;
+
+        if(!validarCampos()) return;
 
         //Detectamos la Unidad de Longitud a convertir para convertilo a centimetros y con esa base convertirlos a la Unidad de Longitud de salida seleccionada
         switch (longitudesEntrada.getSelectedItem().toString()){
@@ -123,19 +191,5 @@ public class Longitud extends AppCompatActivity implements  AdapterView.OnItemSe
         }
 
         et_salida.setText(Double.toString(res));
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        // TODO Auto-generated method stub
-    }
-
-    public boolean validarCampos(){
-        if(et_entrada.getText().toString().matches("")){
-            Toast.makeText(this, "Ingrese un Valor a Convertir", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        return true;
     }
 }

@@ -3,19 +3,25 @@ package com.example.conversion_unidades;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class Volumen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     String[] items = new String[]{"Litro", "Mililitro", "Metro Cubico", "Galon"};
     private Spinner volumenEntrada;
     private Spinner volumenSalida;
-    private EditText et_entrada, et_salida;
+    private EditText et_entrada;
+    private TextView et_salida;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +46,54 @@ public class Volumen extends AppCompatActivity implements AdapterView.OnItemSele
         volumenSalida.setOnItemSelectedListener(this);
 
         et_entrada = (EditText) findViewById(R.id.et_entrada);
-        et_salida = (EditText) findViewById(R.id.et_salida);
+        et_salida = (TextView) findViewById(R.id.et_salida);
         et_entrada.setText("1");
+        et_salida.setFocusable(false);
+
+
+        et_entrada.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //Al cambiar el EditText ejecutamos un nuevo calculo
+                Calcular();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
 
+        Calcular();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        // TODO Auto-generated method stub
+    }
+
+    public boolean validarCampos(){
+        if(et_entrada.getText().toString().matches("")){
+            Toast.makeText(this, "Ingrese un Valor a Convertir", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(et_entrada.getText().toString().matches("\\.")){
+            Toast.makeText(this, "Ingrese un Valor Valido", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    public void Calcular(){
         double Lt = 0;
         double res = 0;
 
@@ -91,19 +138,5 @@ public class Volumen extends AppCompatActivity implements AdapterView.OnItemSele
         }
 
         et_salida.setText(Double.toString(res));
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        // TODO Auto-generated method stub
-    }
-
-    public boolean validarCampos(){
-        if(et_entrada.getText().toString().matches("")){
-            Toast.makeText(this, "Ingrese un Valor a Convertir", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        return true;
     }
 }

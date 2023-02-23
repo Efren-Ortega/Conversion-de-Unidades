@@ -50,18 +50,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/et_salida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="68dp"
         android:background="@drawable/input"
         android:ems="10"
-        android:hint="Resultado (de Unidad)"
-        android:inputType="numberDecimal"
+        android:text="Resultado (de Unidad)"
         android:minHeight="48dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
         android:theme="@style/EditTextEstilos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
