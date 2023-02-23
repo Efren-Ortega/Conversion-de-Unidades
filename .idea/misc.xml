@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Efren/AndroidStudioProjects/conversion_unidades/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Efren/AndroidStudioProjects/conversion_unidades/app/src/main/res/drawable/ic_convertir.xml" value="0.1045" />
+        <entry key="..\:/Users/Efren/AndroidStudioProjects/conversion_unidades/app/src/main/res/drawable/input.xml" value="0.197" />
+        <entry key="..\:/Users/Efren/AndroidStudioProjects/conversion_unidades/app/src/main/res/drawable/spinner_bg.xml" value="0.197" />
+        <entry key="..\:/Users/Efren/AndroidStudioProjects/conversion_unidades/app/src/main/res/drawable/underline.xml" value="0.2035" />
+        <entry key="..\:/Users/Efren/AndroidStudioProjects/conversion_unidades/app/src/main/res/layout/activity_longitud.xml" value="0.33" />
+        <entry key="..\:/Users/Efren/AndroidStudioProjects/conversion_unidades/app/src/main/res/layout/activity_main.xml" value="0.33" />
       </map>
     </option>
   </component>
