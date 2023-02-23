@@ -10,34 +10,34 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class Volumen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Temperatura extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    String[] items = new String[]{"Litro", "Mililitro", "Metro Cubico", "Galon"};
-    private Spinner volumenEntrada;
-    private Spinner volumenSalida;
+    String[] items = new String[]{"Celsius", "Fahrenheit", "Kelvin"};
+    private Spinner temperaturaEntrada;
+    private Spinner temperaturaSalida;
     private EditText et_entrada, et_salida;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_volumen);
-        setTitle("Volumen");
+        setContentView(R.layout.activity_temperatura);
+        setTitle("Temperatura");
 
-        volumenEntrada = (Spinner)findViewById(R.id.spinner_TempEntrada);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Volumen.this,
+        temperaturaEntrada = (Spinner)findViewById(R.id.spinner_TempEntrada);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Temperatura.this,
                 android.R.layout.simple_spinner_item,items);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        volumenEntrada.setAdapter(adapter);
-        volumenEntrada.setOnItemSelectedListener(this);
+        temperaturaEntrada.setAdapter(adapter);
+        temperaturaEntrada.setOnItemSelectedListener(this);
 
-        volumenSalida = (Spinner)findViewById(R.id.spinner_tempSalida);
-        ArrayAdapter<String>adapter2 = new ArrayAdapter<String>(Volumen.this,
+        temperaturaSalida = (Spinner)findViewById(R.id.spinner_tempSalida);
+        ArrayAdapter<String>adapter2 = new ArrayAdapter<String>(Temperatura.this,
                 android.R.layout.simple_spinner_item,items);
 
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        volumenSalida.setAdapter(adapter2);
-        volumenSalida.setOnItemSelectedListener(this);
+        temperaturaSalida.setAdapter(adapter2);
+        temperaturaSalida.setOnItemSelectedListener(this);
 
         et_entrada = (EditText) findViewById(R.id.et_entrada);
         et_salida = (EditText) findViewById(R.id.et_salida);
@@ -47,48 +47,41 @@ public class Volumen extends AppCompatActivity implements AdapterView.OnItemSele
     @Override
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
 
-        double Lt = 0;
+        double Celsius = 0;
         double res = 0;
 
         if(!validarCampos()) return;
 
         //Detectamos la Unidad de Longitud a convertir para convertilo a Litros y con esa base convertirlos a la Unidad de Longitud de salida seleccionada
-        switch (volumenEntrada.getSelectedItem().toString()){
-            case "Litro":
-                Lt = Float.parseFloat(et_entrada.getText().toString());
+        switch (temperaturaEntrada.getSelectedItem().toString()){
+            case "Celsius":
+                Celsius = Float.parseFloat(et_entrada.getText().toString());
                 break;
 
-            case "Mililitro":
-                Lt = Float.parseFloat(et_entrada.getText().toString()) / 1000;
+            case "Fahrenheit":
+                Celsius = (Float.parseFloat(et_entrada.getText().toString()) - 32) * (5/9);
                 break;
 
-            case "Metro Cubico":
-                Lt = Float.parseFloat(et_entrada.getText().toString()) * 1000;
-                break;
-
-            case "Galon":
-                Lt = Float.parseFloat(et_entrada.getText().toString()) * 3.785;
+            case "Kelvin":
+                Celsius = Float.parseFloat(et_entrada.getText().toString()) - 273.15;
                 break;
         }
 
         //Con la conversión anterior a Kg ahora convertimos ese valor en Kilogramo a la unidad de longitud seleccionada.
-        switch (volumenSalida.getSelectedItem().toString()){
-            case "Litro":
-                res = Lt;
+        switch (temperaturaSalida.getSelectedItem().toString()){
+            case "Celsius":
+                res = Float.parseFloat(et_entrada.getText().toString());
                 break;
 
-            case "Mililitro":
-                res = Lt * 1000;
+            case "Fahrenheit":
+                res = (Float.parseFloat(et_entrada.getText().toString()) * (9/5)) + 32;
                 break;
 
-            case "Metro Cubico":
-                res = Lt / 1000;
-                break;
-
-            case "Galon":
-                res = Lt / 3.785;
+            case "Kelvin":
+                res = Float.parseFloat(et_entrada.getText().toString()) + 273.15;
                 break;
         }
+
 
         et_salida.setText(Double.toString(res));
     }

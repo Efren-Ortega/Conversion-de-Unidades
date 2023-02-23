@@ -25,7 +25,7 @@ public class Longitud extends AppCompatActivity implements  AdapterView.OnItemSe
         setContentView(R.layout.activity_longitud);
         setTitle("Longitud");
 
-        longitudesEntrada = (Spinner)findViewById(R.id.spinner_volumenEntrada);
+        longitudesEntrada = (Spinner)findViewById(R.id.spinner_TempEntrada);
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(Longitud.this,
                 android.R.layout.simple_spinner_item,items);
 
@@ -33,7 +33,7 @@ public class Longitud extends AppCompatActivity implements  AdapterView.OnItemSe
         longitudesEntrada.setAdapter(adapter);
         longitudesEntrada.setOnItemSelectedListener(this);
 
-        longitudesSalida = (Spinner)findViewById(R.id.spinner_volumenSalida);
+        longitudesSalida = (Spinner)findViewById(R.id.spinner_tempSalida);
         ArrayAdapter<String>adapter2 = new ArrayAdapter<String>(Longitud.this,
                 android.R.layout.simple_spinner_item,items);
 

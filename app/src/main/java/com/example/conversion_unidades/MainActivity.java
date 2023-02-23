@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btn_longitud, btn_peso, btn_volumen;
+    private Button btn_longitud, btn_peso, btn_volumen, btn_temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn_temp = (Button) findViewById(R.id.btn_temperatura);
+        btn_temp.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openActivityTemperatura();
+            }
+        });
+
     }
 
     public void openActivityLongitud(){
@@ -55,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openActivityVolumen(){
         Intent intent = new Intent(this, Volumen.class);
+        startActivity(intent);
+    }
+
+    public void openActivityTemperatura(){
+        Intent intent = new Intent(this, Temperatura.class);
         startActivity(intent);
     }
 

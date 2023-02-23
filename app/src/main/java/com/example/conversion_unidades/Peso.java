@@ -24,7 +24,7 @@ public class Peso extends AppCompatActivity implements AdapterView.OnItemSelecte
         setContentView(R.layout.activity_peso);
         setTitle("Peso");
 
-        pesosEntrada = (Spinner)findViewById(R.id.spinner_volumenEntrada);
+        pesosEntrada = (Spinner)findViewById(R.id.spinner_TempEntrada);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(Peso.this,
                 android.R.layout.simple_spinner_item,items);
 
@@ -32,7 +32,7 @@ public class Peso extends AppCompatActivity implements AdapterView.OnItemSelecte
         pesosEntrada.setAdapter(adapter);
         pesosEntrada.setOnItemSelectedListener(this);
 
-        pesosSalida = (Spinner)findViewById(R.id.spinner_volumenSalida);
+        pesosSalida = (Spinner)findViewById(R.id.spinner_tempSalida);
         ArrayAdapter<String>adapter2 = new ArrayAdapter<String>(Peso.this,
                 android.R.layout.simple_spinner_item,items);
 

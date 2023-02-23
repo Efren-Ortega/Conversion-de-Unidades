@@ -7,7 +7,7 @@
     tools:context=".Volumen">
 
     <Spinner
-        android:id="@+id/spinner_volumenEntrada"
+        android:id="@+id/spinner_TempEntrada"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="40dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="@+id/et_entrada" />
 
     <Spinner
-        android:id="@+id/spinner_volumenSalida"
+        android:id="@+id/spinner_tempSalida"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginLeft="40dp"
@@ -63,7 +63,7 @@
         android:theme="@style/EditTextEstilos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_volumenSalida" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_tempSalida" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -73,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_volumenEntrada"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_TempEntrada"
         app:srcCompat="@drawable/ic_convertir" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
