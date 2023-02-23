@@ -3,15 +3,12 @@ package com.example.conversion_unidades;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import com.google.android.material.navigation.NavigationBarView;
 
 public class Longitud extends AppCompatActivity implements  AdapterView.OnItemSelectedListener{
 
@@ -28,7 +25,7 @@ public class Longitud extends AppCompatActivity implements  AdapterView.OnItemSe
         setContentView(R.layout.activity_longitud);
         setTitle("Longitud");
 
-        longitudesEntrada = (Spinner)findViewById(R.id.spinner_longitud1);
+        longitudesEntrada = (Spinner)findViewById(R.id.spinner_pesoEntrada);
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(Longitud.this,
                 android.R.layout.simple_spinner_item,items);
 
@@ -36,7 +33,7 @@ public class Longitud extends AppCompatActivity implements  AdapterView.OnItemSe
         longitudesEntrada.setAdapter(adapter);
         longitudesEntrada.setOnItemSelectedListener(this);
 
-        longitudesSalida = (Spinner)findViewById(R.id.spinner_longitud2);
+        longitudesSalida = (Spinner)findViewById(R.id.spinner_pesosSalida);
         ArrayAdapter<String>adapter2 = new ArrayAdapter<String>(Longitud.this,
                 android.R.layout.simple_spinner_item,items);
 
