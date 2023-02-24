@@ -21,8 +21,6 @@ public class Longitud extends AppCompatActivity implements  AdapterView.OnItemSe
     String[] items = new String[]{"Kilómetro", "Metro", "Centímetro", "Milímetro", "Milla", "Pie", "Yarda", "Pulgada"};
     private Spinner longitudesEntrada;
     private Spinner longitudesSalida;
-    private int selected_1;
-    private int selected_2;
     private EditText et_entrada;
     private TextView et_salida;
 
